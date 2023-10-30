@@ -3,26 +3,37 @@ package ro.uvt.info.designpatternslab2023;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
-    private TableOfContents tableOfContents;
-    private final List<Chapter> chapters;
+public class Book extends Section {
+    private TableOfContents tableOfContentList;
+    private final List<Author> authorList;
 
     public Book(String title) {
-        chapters = new ArrayList<>();
+        super(title);
+        authorList = new ArrayList<>();
     }
 
-    public void print(){}
+    @Override
+    public void print(){
+        System.out.println("Book: " + title );
+        System.out.println();
+
+        System.out.println("Authors: ");
+        for (Author author :
+                authorList) {
+            author.print();
+        }
+        System.out.println();
+
+        for (Element element :
+                elementList) {
+            element.print();
+        }
+
+
+    }
 
     public void addAuthor(Author author) {
+        this.authorList.add(author);
     }
 
-    public int createChapter(String chapterName) {
-        Chapter newChapter = new Chapter(chapterName);
-        this.chapters.add(newChapter);
-        return this.chapters.size() - 1;
-    }
-
-    public Chapter getChapter(int indexChapterOne) {
-        return chapters.get(indexChapterOne);
-    }
 }
