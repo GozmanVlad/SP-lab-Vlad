@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Book extends Section {
-    private TableOfContents tableOfContentList;
     private final List<Author> authorList;
 
     public Book(String title) {
         super(title);
         authorList = new ArrayList<>();
     }
+
+    public Book(Book other){
+        super(other.title);
+        this.authorList = new ArrayList<>(other.authorList);
+    }
+
 
     @Override
     public void print(){
@@ -33,7 +38,7 @@ public class Book extends Section {
     }
 
     public void addAuthor(Author author) {
-        this.authorList.add(author);
+        this.authorList.add(new Author(author));
     }
 
 }

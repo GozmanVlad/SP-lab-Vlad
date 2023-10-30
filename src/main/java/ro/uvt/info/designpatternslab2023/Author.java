@@ -14,6 +14,11 @@ public class Author {
         this.surname = surname;
     }
 
+    public Author(Author author){
+        this.name = author.name;
+        this.surname = author.surname;
+    }
+
     public void print(){
         System.out.println("Author: " + name);
     }

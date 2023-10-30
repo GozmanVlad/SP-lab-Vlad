@@ -4,12 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Chapter {
-    private String name;
+    private final String name;
     private final List<SubChapter> subChapterList;
 
     public Chapter(String name) {
         this.name = name;
         this.subChapterList = new ArrayList<SubChapter>();
+    }
+
+    public  Chapter(Chapter other){
+        this.name = other.name;
+        this.subChapterList = new ArrayList<>(other.subChapterList);
     }
 
     public void print(){

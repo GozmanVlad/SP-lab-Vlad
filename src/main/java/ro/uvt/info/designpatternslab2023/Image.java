@@ -1,10 +1,13 @@
 package ro.uvt.info.designpatternslab2023;
 
-public class Image implements Element {
+public class Image extends Element {
     private final String imageName;
 
     public Image(String imageName) {
         this.imageName = imageName;
+    }
+    public Image(Image other){
+        imageName = other.imageName;
     }
 
     public void print(){
@@ -24,5 +27,10 @@ public class Image implements Element {
     @Override
     public Element get(int index) {
         throw new IllegalStateException("Cannot get an element");
+    }
+
+    @Override
+    public Element clone() {
+        return new Image(this);
     }
 }
