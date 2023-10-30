@@ -1,6 +1,5 @@
 package ro.uvt.info.designpatternslab2023;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -8,23 +7,29 @@ public class DesignPatternsLab2023Application {
 
     public static void main(String[] args) {
         //SpringApplication.run(DesignPatternsLab2023Application.class, args);
-        Book discoTitanic = new Book("Disco Titanic");
-        Author author = new Author("Radu Pavel Gheo");
-        discoTitanic.addAuthor(author);
-        int indexChapterOne = discoTitanic.createChapter("Capitolul 1");
-        Chapter chp1 = discoTitanic.getChapter(indexChapterOne);
-        int indexSubChapterOneOne = chp1.createSubChapter("Subcapitolul 1.1");
-        SubChapter scOneOne = chp1.GetSubChapter(indexSubChapterOneOne);
-
-        scOneOne.createNewParagraph("Paragraph 1");
-        scOneOne.createNewParagraph("Paragraph 2");
-        scOneOne.createNewParagraph("Paragraph 3");
-        scOneOne.createNewImage("Image 1");
-        scOneOne.createNewParagraph("Paragraph 4");
-        scOneOne.createNewTable("Table 1");
-        scOneOne.createNewParagraph("Paragraph 5");
-
-        scOneOne.print();
+        Book noapteBuna = lab3();
+        noapteBuna.print();
     }
 
+    private static Book lab3() {
+        Book noapteBuna = new Book("Noapte buna, copii!");
+        Author rpGheo = new Author("Radu Pavel Gheo");
+        Section cap1 = new Section("Capitolul 1");
+        Section cap11 = new Section("Capitolul 1.1");
+        Section cap111 = new Section("Capitolul 1.1.1");
+        Section cap1111 = new Section("Subchapter 1.1.1.1");
+
+        noapteBuna.addAuthor(rpGheo);
+        noapteBuna.add(new Paragraph("Multumesc celor care ..."));
+        cap1111.add(new Image("Image subchapter 1.1.1.1"));
+        cap111.add(new Paragraph("Text from subchapter 1.1.1"));
+        cap111.add(cap1111);
+        cap11.add(new Paragraph("Text from subchapter 1.1"));
+        cap11.add(cap111);
+        cap1.add(new Paragraph("Moto capitol"));
+        cap1.add(cap11);
+        noapteBuna.add(cap1);
+
+        return noapteBuna;
+    }
 }

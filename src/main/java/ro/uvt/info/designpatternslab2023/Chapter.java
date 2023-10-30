@@ -4,15 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Chapter {
-    private final List<SubChapter> subChapters;
+    private final String name;
+    private final List<SubChapter> subChapterList;
 
     public Chapter(String name) {
-        this.subChapters = new ArrayList<SubChapter>();
+        this.name = name;
+        this.subChapterList = new ArrayList<SubChapter>();
+    }
+
+    public  Chapter(Chapter other){
+        this.name = other.name;
+        this.subChapterList = new ArrayList<>(other.subChapterList);
     }
 
     public void print(){
         for (SubChapter subChapter:
-                subChapters) {
+                subChapterList) {
             subChapter.print();
         }
 
@@ -20,11 +27,11 @@ public class Chapter {
 
     public int createSubChapter(String subChapterName) {
         SubChapter newSubChapter = new SubChapter(subChapterName);
-        subChapters.add(newSubChapter);
-        return subChapters.size() - 1;
+        subChapterList.add(newSubChapter);
+        return subChapterList.size() - 1;
     }
 
     public SubChapter GetSubChapter(int index) {
-        return subChapters.get(index);
+        return subChapterList.get(index);
     }
 }

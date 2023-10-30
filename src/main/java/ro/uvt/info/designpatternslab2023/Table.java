@@ -1,13 +1,24 @@
 package ro.uvt.info.designpatternslab2023;
 
-public class Table implements Element {
-    private final String title;
+import java.util.ArrayList;
 
+public class Table extends Element {
+    private final String title;
     public Table(String title) {
         this.title = title;
     }
+    public Table(Table other){
+        this.title = other.title;
+        this.elementList = new ArrayList<>(other.elementList);
+    }
 
+    @Override
     public void print(){
         System.out.println("Table with Title: " + title);
+    }
+
+    @Override
+    public Element clone() {
+        return new Table(this);
     }
 }
