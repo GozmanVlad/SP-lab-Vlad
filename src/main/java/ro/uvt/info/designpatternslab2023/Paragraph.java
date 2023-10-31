@@ -1,15 +1,26 @@
 package ro.uvt.info.designpatternslab2023;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Paragraph extends Element {
+    @Getter
     private final String text;
+    @Setter
+    private AlignStrategy alignStrategy;
     public Paragraph(String text) {
         this.text = text;
     }
-    public Paragraph(Paragraph other){this.text = other.text;}
+    public Paragraph(Paragraph other){
+        this.text = other.text;
+        this.alignStrategy = other.alignStrategy;
+    }
 
     @Override
     public void print(){
-        System.out.println("Paragraph: " + text);
+        if(alignStrategy != null)
+            alignStrategy.render(this);
+        else new AlignLeft().render(this);
     }
 
     @Override
