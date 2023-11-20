@@ -1,7 +1,9 @@
-package ro.uvt.info.designpatternslab2023;
+package ro.uvt.info.models;
 
 import lombok.Getter;
 import lombok.Setter;
+import ro.uvt.info.designpatternslab2023.AlignLeft;
+import ro.uvt.info.designpatternslab2023.AlignStrategy;
 
 public class Paragraph extends Element {
     @Getter

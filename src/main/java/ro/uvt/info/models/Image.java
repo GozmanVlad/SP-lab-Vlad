@@ -1,5 +1,7 @@
-package ro.uvt.info.designpatternslab2023;
+package ro.uvt.info.models;
 
+
+import ro.uvt.info.designpatternslab2023.Picture;
 
 import java.util.concurrent.TimeUnit;
 
