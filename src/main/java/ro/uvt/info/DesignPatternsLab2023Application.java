@@ -2,8 +2,7 @@ package ro.uvt.info;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import ro.uvt.info.models.*;
-import ro.uvt.info.services.RenderContentVisitor;
-import ro.uvt.info.services.TableOfContentUpdate;
+import ro.uvt.info.services.*;
 
 @SpringBootApplication
 public class DesignPatternsLab2023Application {
@@ -29,8 +28,7 @@ public class DesignPatternsLab2023Application {
         cap1.add(new Table("Table 1"));
         b.add(cap1);
         b.add(cap2);
-        TableOfContentUpdate tocUpdate = new TableOfContentUpdate();
-        b.accept(tocUpdate);
-        tocUpdate.getToC().accept(new RenderContentVisitor());
+        BookSaveVisitor saveVisitor = new BookSaveVisitor();
+        b.accept(saveVisitor);
     }
 }
