@@ -1,9 +1,6 @@
-package ro.uvt.info.designpatternslab2023;
+package ro.uvt.info.models;
 
-import ro.uvt.info.models.Element;
-import ro.uvt.info.models.Image;
-
-public class ImageProxy extends Element implements Picture{
+public class ImageProxy extends Element implements Picture, Visitee {
     private Image realImage;
     private final String url;
 
@@ -23,12 +20,12 @@ public class ImageProxy extends Element implements Picture{
     }
 
     @Override
-    public void print() {
-        LoadImage().print();
+    public Element clone() {
+        return null;
     }
 
     @Override
-    public Element clone() {
-        return null;
+    public void accept(Visitor visitor) {
+        visitor.visitImageProxy(this);
     }
 }

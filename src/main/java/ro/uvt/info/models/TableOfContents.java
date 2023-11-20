@@ -1,21 +1,32 @@
 package ro.uvt.info.models;
 
+import lombok.Getter;
 import java.util.ArrayList;
+import java.util.List;
 
-public class TableOfContents extends Element {
+@Getter
+public class TableOfContents extends Element implements Visitee {
+    private final List<String> entries;
+
     public TableOfContents(){
-        elementList = new ArrayList<>();
+        entries = new ArrayList<>();
     }
 
     public TableOfContents(TableOfContents other){
-        elementList = new ArrayList<>(other.elementList);
+        entries = new ArrayList<>(other.entries);
     }
-
-    @Override
-    public void print(){}
 
     @Override
     public Element clone() {
         return new TableOfContents(this);
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitTableOfContents(this);
+    }
+
+    public void addEntry(String entry){
+        entries.add(entry);
     }
 }

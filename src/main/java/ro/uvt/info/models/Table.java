@@ -1,8 +1,10 @@
 package ro.uvt.info.models;
 
+import lombok.Getter;
 import java.util.ArrayList;
 
-public class Table extends Element {
+@Getter
+public class Table extends Element implements Visitee {
     private final String title;
     public Table(String title) {
         this.title = title;
@@ -13,12 +15,12 @@ public class Table extends Element {
     }
 
     @Override
-    public void print(){
-        System.out.println("Table with Title: " + title);
+    public Element clone() {
+        return new Table(this);
     }
 
     @Override
-    public Element clone() {
-        return new Table(this);
+    public void accept(Visitor visitor) {
+        visitor.visitTable(this);
     }
 }

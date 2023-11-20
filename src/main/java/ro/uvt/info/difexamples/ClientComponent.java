@@ -7,8 +7,7 @@ public class ClientComponent {
     private final TransientComponent tc;
     private final SingletonComponent sc;
     @Autowired
-    public ClientComponent(TransientComponent tc, SingletonComponent
-            sc) {
+    public ClientComponent(TransientComponent tc, SingletonComponent sc) {
         this.tc = tc;
         this.sc = sc;
         System.out.println("ClientComponent::ClientComponent = " + this);
