@@ -1,22 +1,21 @@
 package ro.uvt.info.controllers;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ro.uvt.info.difexamples.ClientComponent;
 
-
 @RestController
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class HelloController {
-    private final ClientComponent clientComponent;
 
-    @Autowired
-    public HelloController(ClientComponent clientComponent) {
-        this.clientComponent = clientComponent;
-    }
+    private final ClientComponent clientComponent;
+    private final ClientComponent clientComponent2;
+
 
     @GetMapping("/")
-    public String sayHello() {
-        return "Hello from ClientComponent = " + clientComponent.toString();
+    public String hello() {
+//        return "Hello from Spring Boot";
+        return "Hello from ClientComponent = %s\n%s".formatted(clientComponent, clientComponent2);
     }
 }

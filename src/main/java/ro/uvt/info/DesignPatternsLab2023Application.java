@@ -1,40 +1,36 @@
 package ro.uvt.info;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ro.uvt.info.designpatternslab2023.AlignCenter;
-import ro.uvt.info.designpatternslab2023.AlignLeft;
-import ro.uvt.info.designpatternslab2023.AlignRight;
-import ro.uvt.info.models.Paragraph;
-import ro.uvt.info.models.Section;
+import ro.uvt.info.models.*;
+import ro.uvt.info.services.RenderContentVisitor;
+import ro.uvt.info.services.TableOfContentUpdate;
 
 @SpringBootApplication
 public class DesignPatternsLab2023Application {
 
     public static void main(String[] args) {
         //SpringApplication.run(DesignPatternsLab2023Application.class, args);
-        lab5();
+        lab7();
     }
 
-    private static void lab5() {
-        Section cap1 = new Section("Capitolul 1");
-        Paragraph p1 = new Paragraph("Paragraph 1");
-        cap1.add(p1);
-        Paragraph p2 = new Paragraph("Paragraph 2");
-        cap1.add(p2);
-        Paragraph p3 = new Paragraph("Paragraph 3");
-        cap1.add(p3);
-        Paragraph p4 = new Paragraph("Paragraph 4");
-        cap1.add(p4);
-        System.out.println("Printing without Alignment");
-        System.out.println();
-        cap1.print();
-        p1.setAlignStrategy(new AlignCenter());
-        p2.setAlignStrategy(new AlignRight());
-        p3.setAlignStrategy(new AlignLeft());
-
-        System.out.println();
-        System.out.println("Printing with Alignment");
-        System.out.println();
-        cap1.print();
+    private static void lab7() {
+        Book b = new Book("The book");
+        Section cap1 = new Section("Chapter 1");
+        Section cap11 = new Section("Subchapter 1.1");
+        Section cap2 = new Section("Chapter 2");
+        cap1.add(new Paragraph("Paragraph 1"));
+        cap1.add(new Paragraph("Paragraph 2"));
+        cap1.add(new Paragraph("Paragraph 3"));
+        cap11.add(new ImageProxy("ImageOne"));
+        cap11.add(new Image("ImageTwo"));
+        cap2.add(new Paragraph("Paragraph 4"));
+        cap1.add(cap11);
+        cap1.add(new Paragraph("Some text"));
+        cap1.add(new Table("Table 1"));
+        b.add(cap1);
+        b.add(cap2);
+        TableOfContentUpdate tocUpdate = new TableOfContentUpdate();
+        b.accept(tocUpdate);
+        tocUpdate.getToC().accept(new RenderContentVisitor());
     }
 }

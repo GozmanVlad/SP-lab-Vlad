@@ -1,9 +1,11 @@
 package ro.uvt.info.models;
 
+import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Element {
+@Getter
+public abstract class Element implements Visitee {
 
     protected List<Element> elementList;
     public Element() {
@@ -20,6 +22,5 @@ public abstract class Element {
         return elementList.get(index);
     }
 
-    public abstract void print();
     public abstract Element clone();
 }
