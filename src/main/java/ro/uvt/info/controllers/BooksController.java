@@ -1,35 +1,42 @@
 package ro.uvt.info.controllers;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ro.uvt.info.models.*;
-import ro.uvt.info.services.BookStatistics;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.ArrayList;
+import ro.uvt.info.models.Book;
 
 @RestController
 @RequestMapping("/books")
 public class BooksController {
-    @GetMapping("/statistics")
-    public ResponseEntity<?> printStatistics() {
-        Section cap1 = new Section("Capitolul 1");
-        Paragraph p1 = new Paragraph("Paragraph 1");
-        cap1.add(p1);
-        Paragraph p2 = new Paragraph("Paragraph 2");
-        cap1.add(p2);
-        Paragraph p3 = new Paragraph("Paragraph 3");
-        cap1.add(p3);
-        Paragraph p4 = new Paragraph("Paragraph 4");
-        cap1.add(p4);
-        cap1.add(new ImageProxy("ImageOne"));
-        cap1.add(new Image("ImageTwo"));
-        cap1.add(new Paragraph("Some text"));
-        cap1.add(new Table("Table 1"));
-//        cap1.accept(new RenderContentVisitor());
-        BookStatistics stats = new BookStatistics();
-        cap1.accept(stats);
-        stats.printStatistics();
-        return new ResponseEntity<>("", HttpStatus.OK);
+
+    private final List<Book> books = new ArrayList<>();
+    @GetMapping
+    public ResponseEntity<List<Book>> getAllBooks() {
+        return ResponseEntity.ok(books);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Book> getBook(@PathVariable Long id) {
+        return ResponseEntity.ok(null);
+    }
+
+    @PostMapping
+    public ResponseEntity<String> createBook(@RequestBody Book book) {
+        // For now, return a success message
+        return ResponseEntity.ok("Book created successfully");
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateBook(@PathVariable Long id, @RequestBody Book book) {
+        // For now, return a success message
+        return ResponseEntity.ok("Book with id: " + id + " updated successfully");
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteBook(@PathVariable Long id) {
+        // For now, return a success message
+        return ResponseEntity.ok("Book with id: " + id + " deleted successfully");
     }
 }

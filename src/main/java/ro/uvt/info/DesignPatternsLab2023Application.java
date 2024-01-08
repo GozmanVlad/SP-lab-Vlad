@@ -9,10 +9,10 @@ public class DesignPatternsLab2023Application {
 
     public static void main(String[] args) {
         //SpringApplication.run(DesignPatternsLab2023Application.class, args);
-        lab7();
+        lab9_10();
     }
 
-    private static void lab7() {
+    private static void lab9_10() {
         Book b = new Book("The book");
         Section cap1 = new Section("Chapter 1");
         Section cap11 = new Section("Subchapter 1.1");
